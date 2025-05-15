@@ -63,7 +63,7 @@ namespace Assignment5V25
 
         public override string ToString()
         {
-            return $"{Name} ({FlightID}) → {Destination} | Can Land: {CanLand} | Flight Time: {FlightTime} mins";
+            return $"{Name} ({FlightID}) heading for {Destination}";
         }
     }
 }

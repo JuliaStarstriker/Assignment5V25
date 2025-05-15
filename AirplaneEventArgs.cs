@@ -10,7 +10,7 @@ namespace Assignment5V25
     {
         // Fields
         private string message;
-        private string name;
+        public string name;
 
         // Properties
         public string Flight { get; set; }
