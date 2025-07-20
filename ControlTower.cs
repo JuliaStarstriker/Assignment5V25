@@ -10,21 +10,21 @@ namespace Assignment5V25
 {
     class ControlTower
     {
-        // Fields
         private ListManager<Airplane> flights;
         private ListBox listB;
 
-        // Property
         public List<Airplane> Flights => flights.Items;
 
-        // Constructor
         public ControlTower(ListBox lst)
         {
             flights = new ListManager<Airplane>();
             listB = lst;
         }
 
-        // Methods
+        /// <summary>
+        /// Add Plane
+        /// </summary>
+        /// <param name="plane"></param>
         public void AddPlane(Airplane plane)
         {
             // Register event handler for display
@@ -35,10 +35,13 @@ namespace Assignment5V25
             flights.Add(plane);
         }
 
+        /// <summary>
+        /// Add Test Values to program
+        /// </summary>
         public void AddTestValues()
         {
             // Example test values
-            var samplePlanes = new List<Airplane>
+            List<Airplane> samplePlanes = new List<Airplane>
             {
                 new Airplane { Name = "Boing 747 XL", FlightID = "BA100", Destination = "Bangkok", CanLand = true },
                 new Airplane { Name = "SAAS Caroline", FlightID = "AA200", Destination = "New York", CanLand = false },
@@ -49,12 +52,33 @@ namespace Assignment5V25
                 AddPlane(plane);
         }
 
+        /// <summary>
+        /// Displays info depending on the state of the plane
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnDisplayInfo(object sender, AirplaneEventArgs e)
         {
-            // Display event info in the ListBox
-            listB.Items.Add($"{e.name}: {e.Message}");
+            if (sender is Airplane plane)
+            {
+                string time = DateTime.Now.ToString("HH:mm:ss");
+
+                if (e.Message.Contains("taken off"))
+                {
+                    listB.Items.Add($"{plane.Name} ({plane.FlightID}) is taking off, destination {plane.Destination}, at {time}!");
+                }
+                else if (e.Message.Contains("landed"))
+                {
+                    listB.Items.Add($"{plane.Name} ({plane.FlightID}) has landed in {plane.Destination} {time}");
+                }
+            }
         }
 
+        /// <summary>
+        /// Button for oder to land the plane
+        /// </summary>
+        /// <param name="index"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void OrderLanding(int index)
         {
             if (index < 0 || index >= flights.Items.Count)
@@ -64,6 +88,11 @@ namespace Assignment5V25
             plane.OnLanding();
         }
 
+        /// <summary>
+        /// Button foroder plane to take off
+        /// </summary>
+        /// <param name="index"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void OrderTakeOff(int index)
         {
             if (index < 0 || index >= flights.Items.Count)

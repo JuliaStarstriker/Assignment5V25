@@ -32,7 +32,7 @@ namespace Assignment5V25
 
         private void InitializeGUI()
         {
-            //tower.AddTestValues(); // Optional
+            //tower.AddTestValues();  // (Optional)
             UpdateGUI();
         }
 
