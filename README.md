@@ -1,12 +1,12 @@
 This is a university-level assignment that I have completed.
 
-Objectives The main objectives of this assignment are:
+Objectives
 
    •To work with events and delegates using a publisher/subscriber pattern
    
    • To create a WPF application and become acquainted with some basic WPF component
 
-Description: 
+Description
 
    We are going to simulate a simple use case of flight departures in an airport.
     The airport has a control tower.A controller registers a plane to get ready on the runway and
